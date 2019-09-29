@@ -1,0 +1,39 @@
+{
+  "name": "@devnetic/server",
+  "version": "1.0.0",
+  "description": "A modern, powerful and blasing fast server for Node.js",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "standard",
+    "test": "ava",
+    "test:watch": "ava --watch"
+  },
+  "files": [
+    "src/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devnetic/server.git"
+  },
+  "keywords": [
+    "server",
+    "http",
+    "api"
+  ],
+  "author": "Alvaro Jose Agamez Licha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devnetic/server/issues"
+  },
+  "homepage": "https://github.com/devnetic/server#readme",
+  "dependencies": {
+    "@devnetic/cli": "^1.0.2",
+    "@devnetic/router": "^1.1.1"
+  },
+  "devDependencies": {
+    "ava": "^2.3.0",
+    "nyc": "^14.1.1",
+    "sinon": "^7.4.2",
+    "standard": "^14.1.0"
+  }
+}
