@@ -30,7 +30,7 @@ const getBody = (request, callback) => {
   request.on('end', () => {
     const body = Buffer.concat(bodyBuffer).toString()
 
-    if (request.headers['content-type'] === 'application/json') {
+    if (request.headers['content-type'].includes('application/json')) {
       return callback(JSON.parse(body))
     }
 
