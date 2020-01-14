@@ -1,6 +1,6 @@
 {
   "name": "@devnetic/server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A modern, powerful and blasing fast server for Node.js",
   "main": "index.js",
   "scripts": {
