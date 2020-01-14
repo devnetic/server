@@ -5,16 +5,6 @@ const router = require('@devnetic/router')
 const Response = require('./Response')
 
 /**
- * @type {Object}
- * @property {Object.<string, string>} host Default host address for the server
- * @property {Object.<string, number>} port Default port number for the server
- */
-const DEFAULT_CONFIG = {
-  host: '::',
-  port: 3000
-}
-
-/**
  * Read the body content from the request stream
  *
  * @param {IncomingMessage} request
@@ -44,7 +34,7 @@ const getBody = (request, callback) => {
  * @param {string} [host=DEFAULT_CONFIG.host]
  * @returns {void}
  */
-const listen = (port = DEFAULT_CONFIG.port, host = DEFAULT_CONFIG.host) => {
+const listen = (port = process.env.PORT, host = process.env.HOST) => {
   const server = http.createServer(requestHandler)
 
   server.listen(port, host, (error) => {
@@ -77,14 +67,6 @@ const requestHandler = (request, response) => {
     request.query = route.query
 
     switch (request.method) {
-      // case 'DELETE':
-      // case 'GET':
-      // case 'HEAD':
-      // case 'OPTIONS':
-      //   route.handler(request, new Response(response))
-
-      //   break
-
       case 'PATCH':
       case 'POST':
       case 'PUT':
@@ -109,8 +91,8 @@ const requestHandler = (request, response) => {
  */
 const usage = () => {
   return [
-    `  -p --port    Port to use [${DEFAULT_CONFIG.port}]`,
-    `  -H --host    Address to use [${DEFAULT_CONFIG.host}]`,
+    `  -p --port    Port to use [${process.env.PORT}]`,
+    `  -H --host    Address to use [${process.env.HOST}]`,
     '  -s --silent  Suppress log messages from output',
     '  --cors[=headers]   Enable CORS via the "Access-Control-Allow-Origin" header',
     '                     Optionally provide CORS headers list separated by commas',
