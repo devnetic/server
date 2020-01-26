@@ -1,13 +1,11 @@
 {
   "name": "@devnetic/server",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A modern, powerful and blasing fast server for Node.js",
   "main": "index.js",
   "scripts": {
     "lint": "standard",
-    "start": "node index.js",
-    "test": "ava",
-    "test:watch": "ava --watch"
+    "start": "node index.js"
   },
   "files": [
     "src/**/*"

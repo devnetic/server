@@ -30,8 +30,8 @@ const getBody = (request, callback) => {
 
 /**
  *
- * @param {number} [port=DEFAULT_CONFIG.port]
- * @param {string} [host=DEFAULT_CONFIG.host]
+ * @param {number} [port=process.env.PORT]
+ * @param {string} [host=process.env.HOST]
  * @returns {void}
  */
 const listen = (port = process.env.PORT, host = process.env.HOST) => {
@@ -39,12 +39,34 @@ const listen = (port = process.env.PORT, host = process.env.HOST) => {
 
   server.listen(port, host, (error) => {
     if (error) {
-      console.log('Something bad happened', error)
+      console.log('Something bad happened: %o', error)
 
       throw new Error(`Something bad happened ${error}`)
     }
 
     console.log(`Server is listening on host ${host} and port ${port}`)
+  })
+
+  let shuttingDown = false
+  const signals = ['SIGINT', 'SIGTERM']
+
+  signals.forEach(signal => {
+    process.on(signal, () => {
+      if (!shuttingDown) {
+        console.log('Closing server')
+
+        shuttingDown = true
+        server.close()
+
+        const timer = setTimeout(() => {
+          console.log('Ending process')
+
+          clearTimeout(timer)
+
+          process.exit()
+        })
+      }
+    })
   })
 }
 

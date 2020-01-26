@@ -48,10 +48,46 @@ server.router.get('/users/:id', (request, response) => {
 server.listen() // use default port is 3000, but you can use other
 ```
 
+## Adding a route group
+
+```javascript
+const groupRoutes = [{
+  method: 'post',
+  path: 'login',
+  handler: (request, response) => {
+    response.json({ params: request.params })
+  }
+}, {
+  method: 'post',
+  path: 'register',
+  handler: (request, response) => {
+    response.json({ params: request.params })
+  }
+}, {
+  method: 'get',
+  path: 'logout',
+  handler: (request, response) => {
+    response.json({ params: request.params })
+  }
+}]
+
+server.router.group('v1', groupRoutes)
+server.listen() // use default port is 3000, but you can use other
+```
+
 # Changelog
 
 ### Version 1.0.0
 - Initial release
+
+### Version 1.0.3
+- Get initializacion params from command line
+- Fix usage message
+
+### Version 1.1.0
+- Clean code
+- Fix JSDoc
+- Add Github actions
 
 # TODO
 - [ ] Write test cases.
