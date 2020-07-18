@@ -4,11 +4,32 @@
   "description": "A modern, powerful and blasing fast server for Node.js",
   "main": "index.js",
   "scripts": {
-    "lint": "standard",
+    "build": "npm run clean && tsc",
+    "build:watch": "npm run build -- -w",
+    "clean": "rm -rf lib",
+    "coverage": "nyc ava",
+    "lint": "ts-standard",
+    "lint:fix": "ts-standard --fix",
+    "prepublishOnly": "npm run build && npm run lint && npm run test",
+    "test": "ava",
+    "test:watch": "ava --watch",
+    "compile": "tsc",
     "start": "node index.js"
   },
+  "ava": {
+    "files": [
+      "test/**/*.spec.js"
+    ]
+  },
+  "ts-standard": {
+    "ignore": [
+      "lib",
+      "examples"
+    ]
+  },
   "files": [
-    "src/**/*"
+    "lib/**/*",
+    ".error-description"
   ],
   "repository": {
     "type": "git",
@@ -26,13 +47,14 @@
   },
   "homepage": "https://github.com/devnetic/server#readme",
   "dependencies": {
-    "@devnetic/cli": "^1.0.3",
-    "@devnetic/router": "^1.1.1"
+    "@devnetic/cli": "^1.1.0",
+    "@devnetic/router": "^2.0.0"
   },
   "devDependencies": {
-    "ava": "^2.3.0",
-    "nyc": "^14.1.1",
-    "sinon": "^7.4.2",
-    "standard": "^14.1.0"
+    "@types/node": "^14.0.13",
+    "ava": "^3.9.0",
+    "nyc": "^15.1.0",
+    "ts-standard": "^8.0.1",
+    "typescript": "^3.9.5"
   }
 }
