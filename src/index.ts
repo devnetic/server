@@ -1,18 +1,20 @@
-import { getParams } from '@devnetic/cli'
+// import { getParams } from '@devnetic/cli'
 
-import * as server from './server'
+// import { create } from './server'
 
-const params = getParams()
+// const params = getParams()
 
-process.env.PORT = params.p ?? (params.port ?? 3000)
-process.env.HOST = params.H ?? (params.host ?? '::')
+// process.env.PORT = params.p ?? (params.port ?? 3000)
+// process.env.HOST = params.H ?? (params.host ?? '::')
 
-if (params.help !== undefined || params.h !== undefined) {
-  console.log(server.usage())
+// if (params.help !== undefined || params.h !== undefined) {
+//   console.log(server.usage())
 
-  process.exit()
-}
+//   process.exit()
+// }
 
-export = {
-  ...server
-}
+// export = {
+//   ...server
+// }
+
+export * from './server'

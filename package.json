@@ -31,6 +31,11 @@
     "lib/**/*",
     ".error-description"
   ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/devnetic/server.git"
@@ -47,14 +52,19 @@
   },
   "homepage": "https://github.com/devnetic/server#readme",
   "dependencies": {
-    "@devnetic/cli": "^1.1.0",
+    "@devnetic/cli": "^1.2.1",
     "@devnetic/router": "^2.0.0"
   },
   "devDependencies": {
-    "@types/node": "^14.0.13",
-    "ava": "^3.9.0",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/format": "^11.0.0",
+    "@types/node": "^14.11.2",
+    "ava": "^3.13.0",
+    "husky": "^4.3.0",
     "nyc": "^15.1.0",
-    "ts-standard": "^8.0.1",
-    "typescript": "^3.9.5"
+    "standard-version": "^9.0.0",
+    "ts-standard": "^9.0.0",
+    "typescript": "^4.0.3"
   }
 }

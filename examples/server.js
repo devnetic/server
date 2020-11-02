@@ -1,4 +1,6 @@
-const server = require('./../index')
+const Server = require('./../lib')
+
+const server = Server.createServer()
 
 server.router.get('/ready', (request, response) => {
   response.json({ server: 'ok' })
@@ -46,4 +48,6 @@ const groupRoutes = [{
 
 server.router.group('v1', groupRoutes)
 
-server.listen()
+server.listen(8080, '127.0.0.1', () => {
+  console.log('listening as');
+})
