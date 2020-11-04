@@ -1,29 +1,30 @@
-const server = require('./../index')
+import server from './../src'
 
-server.router.get('/ready', (request, response) => {
-  response.json({ server: 'ok' })
+const app = server.createServer()
+
+app.router.get('/ready', (request, response) => {
+  response.json({ app: 'ok' })
 })
 
-server.router.get('/users', (request, response) => {
+app.router.get('/users', (request, response) => {
   console.log(request.query) // { limit: 10, offset: 2 }
 
-  response.send()
+  response.send('')
 })
 
-server.router.get('/user/:id', (request, response) => {
+app.router.get('/user/:id', (request, response) => {
   response.json({ params: request.params })
 })
 
-server.router.get('/error', (request, response) => {
+app.router.get('/error', (request, response) => {
   response.json({ params: request.params }, 500)
 })
 
-server.router.get('/not-found', (request, response) => {
+app.router.get('/not-found', (request, response) => {
   response.json({ params: request.params }, 404)
 })
 
 // Group routes example
-
 const groupRoutes = [{
   method: 'post',
   path: 'login',
@@ -40,10 +41,10 @@ const groupRoutes = [{
   method: 'get',
   path: 'logout',
   handler: (request, response) => {
-    response.json({ params: request.params })
+    response.json({ params: request.query })
   }
 }]
 
-server.router.group('v1', groupRoutes)
+app.router.group('v1', groupRoutes)
 
-server.listen()
+app.listen()

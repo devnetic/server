@@ -4,8 +4,23 @@
   "description": "A modern, powerful and blasing fast server for Node.js",
   "main": "index.js",
   "scripts": {
+    "coverage": "nyc ava",
     "lint": "standard",
-    "start": "node index.js"
+    "prepublishOnly": "npm run lint && npm run test",
+    "release": "standard-version",
+    "start": "node index.js",
+    "test": "ava --verbose",
+    "test:watch": "ava --verbose --watch"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "files": [
     "src/**/*"
@@ -26,13 +41,18 @@
   },
   "homepage": "https://github.com/devnetic/server#readme",
   "dependencies": {
-    "@devnetic/cli": "^1.0.3",
-    "@devnetic/router": "^1.1.1"
+    "@devnetic/cli": "^1.2.1",
+    "@devnetic/router": "^2.0.0",
+    "esm": "^3.2.25"
   },
   "devDependencies": {
-    "ava": "^2.3.0",
-    "nyc": "^14.1.1",
-    "sinon": "^7.4.2",
-    "standard": "^14.1.0"
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/format": "^11.0.0",
+    "ava": "^3.13.0",
+    "husky": "^4.3.0",
+    "nyc": "^15.1.0",
+    "sinon": "^9.2.1",
+    "standard": "^16.0.1"
   }
 }
