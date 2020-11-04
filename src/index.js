@@ -13,4 +13,4 @@ if (params.help || params.h) {
   process.exit()
 }
 
-export default server
+export * from './server'

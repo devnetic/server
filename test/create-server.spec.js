@@ -3,7 +3,7 @@ import https from 'https'
 
 import test from 'ava'
 
-import server from '../src'
+import * as server from '../src'
 
 test('create HTTP server without config', (t) => {
   const app = server.createServer()
@@ -21,7 +21,7 @@ test('create HTTP server with config', (t) => {
 
 test('create HTTP/2 server', (t) => {
   const app = server.createServer({
-    http2: true
+    http2: {}
   })
 
   t.true(app.server.constructor.name === 'Http2Server')
@@ -29,7 +29,7 @@ test('create HTTP/2 server', (t) => {
 
 test('create HTTPS server', (t) => {
   const app = server.createServer({
-    https: true
+    https: {}
   })
 
   t.true(app.server instanceof https.Server)

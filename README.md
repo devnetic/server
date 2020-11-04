@@ -13,20 +13,26 @@ A modern, powerful and blasing fast server for Node.js
 ## Basic Server
 ```javascript
 const server = require('@devnetic/server')
+// import * as server from './../src'
 
-server.router.get('/ready', (request, response) => {
+const app = server.createServer()
+
+app.router.get('/ready', (request, response) => {
   response.json({ server: 'ok' })
 })
 
-server.listen()
+app.listen()
 ```
 
 ## Routing
 For more information about routing please read the [router](https://www.npmjs.com/package/@devnetic/router) module docs.
 ```javascript
 const server = require('@devnetic/server')
+// import * as server from './../src'
 
-server.router.get('/ready', (request, response) => {
+const app = server.createServer()
+
+app.router.get('/ready', (request, response) => {
   response.json({ server: 'ok' })
 })
 
@@ -75,20 +81,14 @@ server.router.group('v1', groupRoutes)
 server.listen() // use default port is 3000, but you can use other
 ```
 
-# Changelog
+## Configuration
 
-### Version 1.0.0
-- Initial release
+There are configuration option available when you are creating the server:
 
-### Version 1.0.3
-- Get initializacion params from command line
-- Fix usage message
-
-### Version 1.1.0
-- Clean code
-- Fix JSDoc
-- Add Github actions
-
-# TODO
-- [ ] Write test cases.
-- [ ] Add code coverage.
+```javascript
+  const app = server.createServer({
+    keepAliveTimeout: number
+    http2: Object,
+    http2: Object
+  })
+```

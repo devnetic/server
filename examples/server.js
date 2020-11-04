@@ -1,4 +1,4 @@
-import server from './../src'
+import * as server from './../src'
 
 const app = server.createServer()
 

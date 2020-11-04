@@ -112,9 +112,3 @@ const usage = () => {
     .epilog(`Server package copyright ${new Date().getFullYear()}`)
     .show()
 }
-
-// export {
-//   listen,
-//   router,
-//   usage
-// }
