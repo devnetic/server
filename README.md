@@ -13,7 +13,7 @@ A modern, powerful and blasing fast server for Node.js
 ## Basic Server
 ```javascript
 const server = require('@devnetic/server')
-// import * as server from './../src'
+// import * as server from '@devnetic/server'
 
 const app = server.createServer()
 
@@ -28,7 +28,7 @@ app.listen()
 For more information about routing please read the [router](https://www.npmjs.com/package/@devnetic/router) module docs.
 ```javascript
 const server = require('@devnetic/server')
-// import * as server from './../src'
+// import * as server from '@devnetic/server'
 
 const app = server.createServer()
 
