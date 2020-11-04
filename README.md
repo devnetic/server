@@ -6,7 +6,7 @@
 ![GitHub issues](https://img.shields.io/github/issues-raw/devnetic/server)
 ![GitHub](https://img.shields.io/github/license/devnetic/server)
 
-A modern, powerful and blasing fast server for Node.js
+A simple, modern, and blasing fast server for Node.js, with a router module to make your life easier.
 
 # Usage
 
@@ -22,6 +22,31 @@ app.router.get('/ready', (request, response) => {
 })
 
 app.listen()
+```
+
+## Setting Port, Hostname and Listening Callback
+
+Port param is mandatory, hostname and listening callback are optional.
+
+```javascript
+const server = require('@devnetic/server')
+// import * as server from '@devnetic/server'
+
+const app = server.createServer()
+
+app.router.get('/ready', (request, response) => {
+  response.json({ server: 'ok' })
+})
+
+app.listen(3000, 'localhost', (error) => {
+  if (error) {
+    console.error('Something bad happened: %o', error)
+
+    throw new Error(`Something bad happened ${error}`)
+  }
+
+  console.log(`Server is listening on host ${hostname} and port ${port}`)
+})
 ```
 
 ## Routing
@@ -54,7 +79,7 @@ server.router.get('/users/:id', (request, response) => {
 server.listen() // use default port is 3000, but you can use other
 ```
 
-## Adding a route group
+## Adding a Route Group
 
 ```javascript
 const groupRoutes = [{
@@ -83,7 +108,7 @@ server.listen() // use default port is 3000, but you can use other
 
 ## Configuration
 
-There are configuration option available when you are creating the server:
+There are configuration options available when you are creating the server:
 
 ```javascript
   const app = server.createServer({
@@ -92,3 +117,15 @@ There are configuration option available when you are creating the server:
     http2: Object
   })
 ```
+
+The `listen()` method have 3 different signatures and can take `port`, `hostname` and `callback` params.  The signatures are:
+
+```javascript
+app.listen(3000, (error) => {})
+
+app.listen(3000, 'localhost')
+
+app.listen(3000, 'localhost', (error) => {})
+```
+
+If you use the second signature, a `'::'` value is set like hostname.  Port param is always mandatory.

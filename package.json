@@ -4,7 +4,7 @@
   "description": "A modern, powerful and blasing fast server for Node.js",
   "main": "index.js",
   "scripts": {
-    "coverage": "nyc ava",
+    "coverage": "nyc --require esm ava",
     "lint": "standard",
     "prepublishOnly": "npm run lint && npm run test",
     "release": "standard-version",
@@ -13,6 +13,9 @@
     "test:watch": "ava --verbose --watch"
   },
   "ava": {
+    "files": [
+      "test/**/*.spec.js"
+    ],
     "require": [
       "esm"
     ]

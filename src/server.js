@@ -48,20 +48,22 @@ export const createServer = (options = {}, requestListener = router.attach) => {
 
   /**
    *
-   * @param {number} [port=process.env.PORT]
-   * @param {string} [host=process.env.HOST]
+   * @param {number} port
+   * @param {string} host
+   * @param {Function} requestListener
    * @returns {void}
    */
-  const listen = (port = process.env.PORT, host = process.env.HOST) => {
-    server.listen(port, host, (error) => {
-      if (error) {
-        console.log('Something bad happened: %o', error)
+  const listen = (port, host, requestListener = () => {}) => {
+    if (!port) {
+      throw new Error('KS0001: please provide the port to listen')
+    }
 
-        throw new Error(`Something bad happened ${error}`)
-      }
+    if (typeof host === 'function') {
+      requestListener = host
+      host = '::'
+    }
 
-      console.log(`Server is listening on host ${host} and port ${port}`)
-    })
+    server.listen(port, host, requestListener)
 
     let shuttingDown = false
     const signals = ['SIGINT', 'SIGTERM']
