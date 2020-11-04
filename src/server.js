@@ -11,6 +11,7 @@ import { router } from '@devnetic/router'
  * @typedef {Object} Server
  * @property {Function} listen - Starts the HTTP server listening for connections.
  * @property {Router} router - The router module
+ * @property {http.Server} server - The native server
  * @property {Function} usage - Show the server usage
  */
 
@@ -26,7 +27,7 @@ import { router } from '@devnetic/router'
 /**
  *
  * @param {InstanceOptions} options
- * @param {*} requestListener
+ * @param {Function} [requestListener]
  * @returns {Server}
  */
 export const createServer = (options = {}, requestListener = router.attach) => {
@@ -55,7 +56,11 @@ export const createServer = (options = {}, requestListener = router.attach) => {
    */
   const listen = (port, host, requestListener = () => {}) => {
     if (!port) {
-      throw new Error('KS0001: please provide the port to listen')
+      throw new Error('KS0001: Please provide the port to listen')
+    }
+
+    if (typeof port !== 'number') {
+      throw new Error('KS0002: Port needs to be a number')
     }
 
     if (typeof host === 'function') {

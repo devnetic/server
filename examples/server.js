@@ -47,15 +47,14 @@ const groupRoutes = [{
 
 app.router.group('v1', groupRoutes)
 
-const port = 3000
-const hostname = 'localhost'
-
-app.listen(port, error => {
+app.listen(3000, error => {
   if (error) {
     console.error('Something bad happened: %o', error)
 
     throw new Error(`Something bad happened ${error}`)
   }
+
+  const { address: hostname, port } = app.server.address()
 
   console.log(`Server is listening on host ${hostname} and port ${port}`)
 })
